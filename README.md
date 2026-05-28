@@ -1,50 +1,287 @@
-The MSK DAO Constitution (v1.0)
-Drafted for the Mars Society Kenya (MSK) ecosystem.
+# MSK DAO - Mars Society Kenya Decentralized Autonomous Organization
 
-Article I: Purpose & Mission
-The MSK DAO exists to accelerate space exploration research, education, and advocacy within Kenya and East Africa. Our mission is to democratize participation in space science, bridging the gap between local talent and global aerospace opportunities.
+## Overview
 
-Article II: Governance Authority
-The MSK Council: An elected body responsible for legal compliance, financial auditing, and managing the off-chain/on-chain bridge.
+MSK DAO is a comprehensive decentralized governance platform built to accelerate space exploration research, education, and advocacy within Kenya and East Africa. The platform implements multi-chain blockchain technology with strategic integration of Bitcoin, Ethereum, Solana, Tether, and Dogecoin.
 
-The Tokenized Stakeholders: Governance tokens are earned, not bought. Tokens represent Contribution Credits. Voting weight is tied to these credits, which are gained through:
+## Architecture
 
-Peer-reviewed research contributions.
+### Multi-Crypto Integration Strategy
 
-Logistical support for analog missions.
+#### 1. **Bitcoin (BTC) - Reserve/Cold Storage**
+- **Purpose**: Long-term value preservation and treasury reserves
+- **Integration**: Via Stacks (Bitcoin L2 smart contracts)
+- **Use Cases**:
+  - Strategic treasury holdings
+  - Long-term investment reserves
+  - Institutional-grade security
 
-Mentorship of junior space scientists.
+#### 2. **Ethereum (ETH) - Governance & Smart Contracts**
+- **Purpose**: On-chain governance mechanisms and smart contract execution
+- **Integration**: Native smart contracts + soulbound tokens (ERC-4973)
+- **Use Cases**:
+  - Governance token contracts
+  - Treasury management contracts
+  - Voting mechanisms
+  - Quadratic voting implementation
 
-The Quorum: Decisions require a minimum of 30% participation from active token holders to pass.
+#### 3. **Solana (SOL) - High-Speed Transactions**
+- **Purpose**: Real-time member rewards and microtransactions
+- **Integration**: Native Solana program architecture
+- **Use Cases**:
+  - Instant member rewards distribution
+  - Activity tracking and rewards
+  - Real-time microtransactions
+  - Low-fee operations
 
-Article III: Treasury Stewardship
-The "Safety First" Mandate: The treasury is split into Operational (USDT) and Reserve (BTC) buckets.
+#### 4. **Tether (USDT) - Operational Treasury**
+- **Purpose**: Stablecoin for operational expenses and budgeting
+- **Integration**: Multi-chain deployment (Ethereum, Polygon, Solana)
+- **Use Cases**:
+  - Project budgets
+  - Operational expenses
+  - Vendor payments
+  - Price consistency
 
-Spending Limits:
+#### 5. **Dogecoin (DOGE) - Community Engagement**
+- **Purpose**: Community rewards, badges, and gamification
+- **Integration**: Via atomic swaps and bridge protocols
+- **Use Cases**:
+  - Community member badges
+  - Achievement rewards
+  - Social engagement incentives
+  - Community tipping system
 
-Council members may approve operational expenses up to a specific limit (e.g., $500 USD) without a full DAO vote.
+## Project Structure
 
-Strategic expenses (e.g., funding a full analog mission) require a community vote.
+```
+msk-dao/
+├── packages/
+│   ├── backend/           # Express.js API server
+│   │   ├── src/
+│   │   │   ├── config/    # Blockchain & Database config
+│   │   │   ├── models/    # MongoDB schemas
+│   │   │   ├── routes/    # API endpoints
+│   │   │   ├── services/  # Business logic
+│   │   │   └── utils/     # Utilities
+│   │   └── package.json
+│   ├── frontend/          # Next.js React application
+│   │   ├── src/
+│   │   │   ├── pages/
+│   │   │   ├── components/
+│   │   │   ├── hooks/
+│   │   │   └── styles/
+│   │   └── package.json
+│   └── smart-contracts/   # Solidity smart contracts
+│       ├── contracts/
+│       ├── scripts/
+│       └── hardhat.config.js
+├── turbo.json             # Monorepo configuration
+├── package.json           # Root package.json
+└── docker-compose.yml     # Local development setup
+```
 
-Transparency: All transactions are logged on-chain, and a quarterly "Mission Financial Report" must be published by the Council to ensure NGO transparency standards.
+## Technology Stack
 
-Article IV: Dispute Resolution
-In the event of a deadlock or dispute, the MSK Board of Trustees (the registered NGO board) acts as the court of final appeal. This ensures that if the code fails, the legal entity provides the safety net.
+### Backend
+- **Runtime**: Node.js
+- **Framework**: Express.js
+- **Language**: TypeScript
+- **Database**: MongoDB
+- **Cache**: Redis
+- **Blockchain**: ethers.js, @solana/web3.js
+- **API Client**: Axios
 
-Article V: Amendments
-This Constitution is a living document. Amendments may be proposed by any member with 5% or more of voting power and require a 60% supermajority vote to pass.
+### Frontend
+- **Framework**: Next.js (React 18)
+- **Styling**: Tailwind CSS
+- **Animations**: Framer Motion
+- **State Management**: Zustand
+- **Data Fetching**: React Query
+- **Web3**: ethers.js, @solana/wallet-adapter
 
-⚠️ A Critical Note on the "Legal Wrapper"
-As you noted, the "legal gray zone" is the biggest risk. For MSK, I strongly recommend researching a "Legal Wrapper" (like the Otonomos or LexDAO frameworks).
+### Smart Contracts
+- **Language**: Solidity 0.8.20
+- **Framework**: Hardhat
+- **Standard**: OpenZeppelin Contracts
+- **Features**: ERC-721 (soulbound), ERC-20 (governance)
 
-This allows you to wrap your DAO in a limited liability entity. Essentially, the DAO is the board of the NGO, or the DAO holds the rights to the NGO's assets. This prevents the "unknown liability" problem where individuals might be held personally responsible for DAO actions.
+## Key Features
 
-With this constitution as your governance bedrock, the "messiness" of crypto disappears because you have defined the rules of the game before bringing in the tokens.
+### 1. Governance Module
+- **Quadratic Voting**: Uses √(contribution_credits) for voting power
+- **Proposal System**: Create, vote, and execute proposals
+- **Quorum Management**: 30% minimum participation requirement
+- **Soulbound Tokens**: Non-transferable contribution credentials
 
-To move this from theory to execution, which piece of the puzzle would you like to build next?
+### 2. Treasury Management
+- **Multi-Crypto**: BTC, ETH, SOL, USDT, DOGE balances
+- **Multi-Chain**: Ethereum, Polygon, Solana, Stacks, Base
+- **Transaction Logging**: All transactions recorded on-chain
+- **Spending Limits**: Council approval for expenses < $500
+- **Transparency**: Quarterly Mission Financial Reports
 
-Tokenomics Model: Designing how the "Contribution Credits" are earned, distributed, and prevented from being manipulated by "whales."
+### 3. Member System
+- **Contribution Credits**: Earned through:
+  - Peer-reviewed research contributions
+  - Logistical support for missions
+  - Mentorship of junior scientists
+- **Member Profiles**: Wallet integration, analytics, rewards tracking
+- **Role-Based Access**: Member, Council, Admin tiers
 
-On-Chain/Off-Chain Bridge: Defining the exact technical workflow for how a vote on Snapshot translates into a payment from the treasury via the legal entity.
+### 4. Project Management
+- **Categories**: Research, Education, Mission, Advocacy
+- **Budget Tracking**: USDT, SOL, ETH denominated budgets
+- **Milestone Tracking**: Timeline management and completion tracking
+- **Impact Measurement**: Expected vs actual outcomes
 
-💡 Strategic Review: Strengthening the Engine1. The Power of Quadratic VotingUsing $\sqrt{MGT}$ for voting power is exactly the right move.Why it works: In a linear system, a contributor with 100 tokens has 100x the power of someone with 1 token.The Math: With a square root formula, that same contributor has $\sqrt{100} = 10$ units of voting power, compared to $\sqrt{1} = 1$.Result: It drastically lowers the barrier for new community members to have a meaningful voice, while still respecting the seniority and deep investment of your core "Commander" tier.2. Solving the "Verification Bottleneck"You are right to worry about verification—it is the #1 reason DAOs die. If the MSK Council has to review every single small contribution, they will burn out in a month.Recommendation: Implement "Guild-Based Peer Verification."Create four "Guilds" (R&D, Ops, Education, Governance).Guilds have the authority to verify the contributions of their own members.The Council only intervenes for:Disputes.High-value grants (>500 MGT).Multi-guild project sign-offs.This decentralizes the work and lets the community scale faster.3. The "Constitution" vs. "Execution"You are currently building the policy (Tokenomics). The next step is to ensure that the policy has a legal home.🚀 What is the next logical step?We are at a crossroads. We can either finalize the "how we work" or the "how we move money."Choice 1: Draft the 1-Page DAO Constitution (The "Rules")We translate these tokenomics into plain-English bylaws that your NGO board can actually adopt. This document serves as the bridge between your traditional NGO registration and the new on-chain structure. It answers: "Who has the final say?" and "What happens if the DAO votes for something illegal?"Choice 2: Build the On-Chain/Off-Chain Bridge (The "Execution")We design the specific, step-by-step workflow for a treasury disbursement. For example:Step 1: A member creates a proposal on the governance portal.Step 2: The DAO votes.Step 3: The multisig wallet (Safe) is notified.Step 4: The NGO Treasurer (off-chain) reviews for legal compliance.Step 5: The funds are released.
+### 5. AI Integration
+- **Member Recommendations**: OpenAI-powered personalized suggestions
+- **Analytics**: Contribution scoring and engagement metrics
+- **Predictive Insights**: Projected rewards and performance trends
+
+## Getting Started
+
+### Prerequisites
+- Node.js 20+
+- Docker & Docker Compose
+- Git
+
+### Local Development
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/mashizaq/msk-dao.git
+   cd msk-dao
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Setup environment variables**
+   ```bash
+   cp packages/backend/.env.example packages/backend/.env
+   cp packages/frontend/.env.example packages/frontend/.env
+   ```
+
+4. **Start local services**
+   ```bash
+   docker-compose up -d
+   ```
+
+5. **Run development servers**
+   ```bash
+   npm run dev
+   ```
+
+### Accessing the Application
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:5000
+- MongoDB: mongodb://localhost:27017
+- Redis: redis://localhost:6379
+
+## API Endpoints
+
+### Authentication
+- `POST /api/auth/register` - Register new user
+- `POST /api/auth/login` - Login user
+- `POST /api/auth/verify` - Verify JWT token
+
+### Members
+- `GET /api/members` - List all members
+- `GET /api/members/:id` - Get member details
+- `PATCH /api/members/:id` - Update member profile
+
+### Governance
+- `GET /api/governance/proposals` - List proposals
+- `POST /api/governance/proposals` - Create proposal
+- `POST /api/governance/proposals/:id/vote` - Vote on proposal
+- `GET /api/governance/voting-power/:userId` - Get voting power
+
+### Treasury
+- `GET /api/treasury/balances` - Get all balances
+- `GET /api/treasury/transactions` - List transactions
+- `POST /api/treasury/transactions` - Log transaction
+
+### Projects
+- `GET /api/projects` - List projects
+- `POST /api/projects` - Create project
+- `PATCH /api/projects/:id` - Update project
+
+### Blockchain
+- `GET /api/blockchain/ethereum/balance/:address` - Get ETH balance
+- `GET /api/blockchain/solana/balance/:publicKey` - Get SOL balance
+- `GET /api/blockchain/networks` - Get network info
+
+## Smart Contract Deployment
+
+### Sepolia Testnet
+```bash
+cd packages/smart-contracts
+npm run deploy:sepolia
+```
+
+### Polygon Mumbai
+```bash
+npm run deploy:polygon
+```
+
+### Base Sepolia
+```bash
+npm run deploy:base
+```
+
+## Configuration
+
+### Environment Variables
+
+See `.env.example` files in `packages/backend` and `packages/frontend` for complete configuration options.
+
+Key variables:
+- `ETHEREUM_RPC_URL` - Ethereum RPC endpoint
+- `SOLANA_RPC_URL` - Solana RPC endpoint
+- `MONGODB_URI` - MongoDB connection string
+- `REDIS_URL` - Redis connection string
+- `JWT_SECRET` - JWT signing secret
+- `OPENAI_API_KEY` - OpenAI API for AI features
+
+## Security Considerations
+
+1. **Private Keys**: Never commit private keys to version control
+2. **Environment Variables**: Use `.env` files (excluded from git)
+3. **Rate Limiting**: All API endpoints have rate limiting
+4. **CORS**: Configure allowed origins in production
+5. **Smart Contracts**: Audited and tested (recommended before mainnet)
+
+## Contributing
+
+1. Create a feature branch: `git checkout -b feature/your-feature`
+2. Commit changes: `git commit -am 'Add your feature'`
+3. Push to branch: `git push origin feature/your-feature`
+4. Submit a pull request
+
+## License
+
+MIT License - See LICENSE file for details
+
+## Support
+
+For issues, questions, or suggestions:
+- GitHub Issues: https://github.com/mashizaq/msk-dao/issues
+- Documentation: See `/docs` directory
+- Email: support@mskdao.org
+
+## Roadmap
+
+- [ ] Phase 1: Core governance and treasury (Current)
+- [ ] Phase 2: AI-powered recommendations
+- [ ] Phase 3: Mobile application
+- [ ] Phase 4: Advanced DeFi integrations
+- [ ] Phase 5: Cross-chain bridges
+- [ ] Phase 6: Mainnet deployment
+
+---
+
+**Built with ❤️ for the Mars Society Kenya and the future of space exploration**
