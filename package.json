@@ -1,0 +1,22 @@
+{
+  "name": "msk-dao",
+  "version": "1.0.0",
+  "description": "Mars Society Kenya DAO - Decentralized Governance Platform",
+  "private": true,
+  "scripts": {
+    "dev": "turbo run dev --parallel",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+  },
+  "devDependencies": {
+    "turbo": "^1.10.16",
+    "typescript": "^5.2.2",
+    "prettier": "^3.0.2",
+    "eslint": "^8.50.0"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}
